@@ -1,0 +1,66 @@
+#language: pt
+
+@produto
+Funcionalidade: Cadastro de um produto
+
+  Cenário: Cadastrar um novo produto no sistema
+    Dado que o usuário está na página de cadastro de produtos
+    Quando o usuário clica no botão "Novo" 
+    E habilita o fomulário ele preenche com as informações do produto:
+      | Nome       | Estoque | Valor |
+      | Produto A  | 100     | 20.0  |
+    E o usuário clica no botão "Salvar"
+    Então o sistema deve exibir a mensagem "Produto cadastrado com sucesso"
+    E o produto "Produto A" deve estar na lista de produtos cadastrados
+
+@cliente
+Funcionalidade: Cadastro de um cliente
+
+  Cenário: Cadastrar um novo cliente no sistema
+    Dado que o usuário está na página de cadastro de clientes
+    Quando o usuário clica no botão "Novo" 
+    E habilita o formulário ele preenche com as informações do cliente:
+     | Nome       | Endereço | Bairro   | Cidade   | UF | CEP       | Telefone       |
+     | Cliente A  | Rua A    | Eldorado | Contagem | MG | 00000-000 | (31)99999-9999 |
+    Então o sistema deve exibir a mensagem "Cliente cadastrado com sucesso"
+
+@usuário
+Funcionalidade: Cadastro de um usuário
+
+  Cenário: Cadastrar um usuário
+   Dado que o usuário está na página de cadastro de usuários
+   Quando o usuário clica no botão "Novo" 
+   E habilita o formulário ele preenche com as informações do cliente:
+    | Nome     | Login        | Senha  |
+    |Usuário A | LoginUsuario | 123456 |
+   Então o sistema deve exibir a mensagem "Usuário cadastrado com sucesso"
+
+@login
+Funcionalidade: Logar no programa
+
+ Contexto: Dado que "Usuário" possui uma conta no sistema
+
+  @positivo
+  Cenário: Login válido
+   Dado que o usuário está na página de login no sistema
+   Quando entrar com os dados de um usuário cadastrado:
+    | Login        | Senha  |
+    | LoginUsuario | 123456 |
+   Então o sistema deve validar e redirecionar para a página inicial de usuário logado
+
+  @negativo
+  Cenário: Login com senha incorreta
+  Dado que o usuário está na página de login no sistema
+  Quando entrar com os dados incorretos:
+    | Login        | Senha  |
+    | LoginUsuario | 654321 |
+  Então o sistema deve exibir a mensagem "Usuário/senha inválido!"
+
+@estoque
+Funcionalidade: Consulta de estoque
+
+  Cenário: Consultar o estoque de um produto
+    Dado que o usuário está na página de consulta de estoque
+    E existem produtos cadastrados no sistema
+    Quando o usuário seleciona o produto "Produto A"
+    Então o sistema deve exibir o estoque atual do produto como 100
