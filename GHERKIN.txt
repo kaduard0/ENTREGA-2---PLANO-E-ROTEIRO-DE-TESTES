@@ -1,66 +1,72 @@
 #language: pt
 
-@produto
-Funcionalidade: Cadastro de um produto
-
-  Cenário: Cadastrar um novo produto no sistema
-    Dado que o usuário está na página de cadastro de produtos
-    Quando o usuário clica no botão "Novo" 
-    E habilita o fomulário ele preenche com as informações do produto:
-      | Nome       | Estoque | Valor |
-      | Produto A  | 100     | 20.0  |
-    E o usuário clica no botão "Salvar"
-    Então o sistema deve exibir a mensagem "Produto cadastrado com sucesso"
-    E o produto "Produto A" deve estar na lista de produtos cadastrados
-
 @cliente
-Funcionalidade: Cadastro de um cliente
+Funcionalidade: Atualização de informações de cliente 
 
-  Cenário: Cadastrar um novo cliente no sistema
-    Dado que o usuário está na página de cadastro de clientes
-    Quando o usuário clica no botão "Novo" 
+  Cenário: Atualização de informações de cliente no sistema
+    Dado que o usuário está na página de atualização de informações
+    Quando o usuário clica no botão "Atualizar dados " 
     E habilita o formulário ele preenche com as informações do cliente:
      | Nome       | Endereço | Bairro   | Cidade   | UF | CEP       | Telefone       |
      | Cliente A  | Rua A    | Eldorado | Contagem | MG | 00000-000 | (31)99999-9999 |
-    Então o sistema deve exibir a mensagem "Cliente cadastrado com sucesso"
+    Então o sistema deve exibir a mensagem "Cadastrado atualiza com sucesso"
 
-@usuário
-Funcionalidade: Cadastro de um usuário
+@Usuário
+Funcionalidade: Excluir cliente
 
-  Cenário: Cadastrar um usuário
-   Dado que o usuário está na página de cadastro de usuários
-   Quando o usuário clica no botão "Novo" 
-   E habilita o formulário ele preenche com as informações do cliente:
-    | Nome     | Login        | Senha  |
-    |Usuário A | LoginUsuario | 123456 |
-   Então o sistema deve exibir a mensagem "Usuário cadastrado com sucesso"
+  Cenário: Excluir cliente
+   Dado que o usuário pesquise o id do cliente tera uma opção para excluir
+   Quando o usuário clica no botão "Excluir" 
+   E habilita a opção para selecionar o cliente desejado
 
-@login
-Funcionalidade: Logar no programa
+     □	|Carlos Eduardo | kaduardoa@gmail.com | 123456 |
+   E o usuário clica no botão "Excluir"
+   Então o sistema deve exibir a mensagem "Cliente excluido com sucesso"
 
- Contexto: Dado que "Usuário" possui uma conta no sistema
+@Usuário
+Funcionalidade: Alterar estoque de produtos
 
-  @positivo
-  Cenário: Login válido
-   Dado que o usuário está na página de login no sistema
-   Quando entrar com os dados de um usuário cadastrado:
-    | Login        | Senha  |
-    | LoginUsuario | 123456 |
-   Então o sistema deve validar e redirecionar para a página inicial de usuário logado
+ Cenário: Alterar produto no sistema
+    Dado que o usuário está na página de produtos
+    Quando o usuário clica no botão "Alterar" 
+    E habilita o formulário para preencher as informações novas do produto:
+      | Nome       | Estoque | Valor | Localização |
+      | Produto A  | 100     | 20    | corredor 5, pratileira 10 |
+    E o usuário clica no botão "Salvar"
+    Então o sistema deve exibir a mensagem "Produto alterado com sucesso"
+    E o produto "Produto A" deve estar na com novas informações
 
-  @negativo
-  Cenário: Login com senha incorreta
-  Dado que o usuário está na página de login no sistema
-  Quando entrar com os dados incorretos:
-    | Login        | Senha  |
-    | LoginUsuario | 654321 |
-  Então o sistema deve exibir a mensagem "Usuário/senha inválido!"
+@Usuário
+Funcionalidade: Cadastrar Usuário 
 
-@estoque
-Funcionalidade: Consulta de estoque
+Cenário: Cadastrar um usuário
+    Dado que o usuário está na página de cadastro
+    Quando o usuário clica no botão "Novo" 
+    E habilita o formulário para preencher com as informações:
+      | Nome       | Login | Senha | Endereço | Bairro   | Cidade   | UF | CEP       | Telefone       |
+      | Carlos     | Cadu  | 9595  | Rua A    | Eldorado | Contagem | MG | 00000-000 | (31)99999-9999 |
+    E o usuário clica no botão "Salvar"
+    Então o sistema deve exibir a mensagem "Usuário cadastrado com sucesso"
+    E o Usuário "Carlos" deve estar no banco de dados de cadastrados
 
-  Cenário: Consultar o estoque de um produto
-    Dado que o usuário está na página de consulta de estoque
-    E existem produtos cadastrados no sistema
-    Quando o usuário seleciona o produto "Produto A"
-    Então o sistema deve exibir o estoque atual do produto como 100
+
+@Usuário
+cliente
+Funcionalidade: Atualizar Usuário 
+
+  Cenário: Atualizar usuário no sistema
+    Dado que o usuário está na página de informações
+    Quando o usuário clica no botão "Atualizar dados " 
+    E habilita o formulário para preencher as informações novas:
+     | Nome       | Endereço | Bairro   | Cidade   | UF | CEP       | Telefone       |
+     | Carlos     | Rua 32   | laranja  | Contagem | MG | 00000-000 | (31)95555-5555 |
+    E o usuário clica no botão "Salvar"
+    Então o sistema deve exibir a mensagem "Cadastrado atualiza com sucesso"
+
+
+
+
+
+
+
+ 
